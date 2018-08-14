@@ -40,9 +40,7 @@ def alph_index(letter):
 
 def compare_words(worda,wordb):#returns later word
     length=min(len(worda),len(wordb))
-    print(length)
     for i in range(0,length):
-        print("go")
         if alph_index(worda[i])<alph_index(wordb[i]):
             return wordb
         elif alph_index(worda[i])>alph_index(wordb[i]):
@@ -56,16 +54,22 @@ def compare_words(worda,wordb):#returns later word
 
 vocab=[]#arranged as a list of ordered pairs (word,description)
 
-def add_word(word,description):#vocab is alphebetized
+def add_word(word,description):#tested,vocab is alphebetized
     global vocab
     low=0
     high=len(vocab)
     while high-low!=0:
         mid=int((low+high)/2)
-        if compare_words(word,vocab[mid][0])==word:
-            low=mid
-        elif compare_words(word,vocab[mid][0])==vocab[mid][0]:
+        higher=compare_words(word,vocab[mid][0])
+        if higher==word:
+            if low!=mid:
+                low=mid
+            else:
+                low=high
+        elif higher==vocab[mid][0]:
             high=mid
+        elif higher=="same":
+            return "repeat word!"   
     if low==high:
         vocab.insert(low,[word,description])
     else:
