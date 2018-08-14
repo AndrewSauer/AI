@@ -4,8 +4,8 @@ def copy(s):
         news.append(i)
     return news
 
-def split_into_words(s):
-    sentences=""
+def split_into_words(s):#tested
+    sentences=[]
     words=[]
     word=""
     ignorespace=False
@@ -15,25 +15,34 @@ def split_into_words(s):
             word=""
         elif letter==' ' and ignorespace==True:
             ignorespace=False
-        elif letter==".":
+        elif letter=="." or letter=="?" or letter=="!":
             words.append(word)
+            words.append(letter)
             sentences.append(copy(words))
             words=[]
             word=""
             ignorespace=True
+        elif letter=="," or letter==";" or letter==":":
+            words.append(word)
+            words.append(letter)
+            word=""
+            ignorespace=True
         else:
             word+=letter
-    return words
+    return sentences
+
 def alph_index(letter):
-    if ord(letter)>64 and ord_letter<91:
+    if ord(letter)>64 and ord(letter)<91:
         index=ord(letter)-64
-    elif ord(letter)>96 and ord_letter<123:
+    elif ord(letter)>96 and ord(letter)<123:
         index=ord(letter)-96
     return index
 
 def compare_words(worda,wordb):#returns later word
-    length=max(len(worda),len(wordb))
+    length=min(len(worda),len(wordb))
+    print(length)
     for i in range(0,length):
+        print("go")
         if alph_index(worda[i])<alph_index(wordb[i]):
             return wordb
         elif alph_index(worda[i])>alph_index(wordb[i]):
@@ -53,9 +62,9 @@ def add_word(word,description):#vocab is alphebetized
     high=len(vocab)
     while high-low!=0:
         mid=int((low+high)/2)
-        if comparewords(word,vocab[mid][0])==word:
+        if compare_words(word,vocab[mid][0])==word:
             low=mid
-        elif comparewords(word,vocab[mid][0])==vocab[mid][0]:
+        elif compare_words(word,vocab[mid][0])==vocab[mid][0]:
             high=mid
     if low==high:
         vocab.insert(low,[word,description])
