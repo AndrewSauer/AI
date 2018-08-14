@@ -60,5 +60,9 @@ def add_word(word):#vocab is alphebetized
 
 We're going to hold off on commas and such until later. Next on the list to do is finish the alphebetizer.
 8/13/2018 10:58
-
+8/14/2018 15:26
+After we have an organized list of words, we need some way to connect words to concepts, and concepts to each other.
+Matters are complicated by the fact that some words correspond to different concepts in different contexts, while others correspond to no concepts and are simply grammatical.
+The magic happens in the description section of the word. It must either say definitively what grammatical class the word is or divide the description into multiple descriptions based on which class. 
+8/14/2018 15:29
 
