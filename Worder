@@ -22,7 +22,8 @@ def split_into_words(s):#tested
             words=[]
             word=""
             ignorespace=True
-        elif letter=="," or letter==";" or letter==":":
+
+elif letter=="," or letter==";" or letter==":":
             words.append(word)
             words.append(letter)
             word=""
@@ -96,5 +97,12 @@ def find_unknown_words(s):
         for word in sentence:
             if word!="." and word!="," and word!="!" and word!="?" and word!=":" and word!=";":
                 if find_word[1]==False:
+                    pos=""
+                    while pos!="noun" and pos!="adjective" and pos!="adverb" and pos!="pronoun" and pos!="preposition" and pos!="conjunction" and pos!="verb" and pos!="interjection":
+                        pos=input("What type of word is this?")
+                    definition=raw_input("Define ", word)
+                    if definition=="undef":
+                        definition=False
+                    questions_mode=input("Want to go to questioning mode to define the word more?")
                     #ask for a definition/part of speech
         
