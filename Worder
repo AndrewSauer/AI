@@ -75,11 +75,11 @@ def find_word(word):#untested,vocab is alphebetized
     else:
         print("error: low!=high")
 
-def add_word(word):
+def add_word(word,description):
     global vocab
     i=find_word(word)
     if i[1]==False:
-        vocab.insert(i[0],word)
+        vocab.insert(i[0],[word,description])
     else:
         return "repeat word"
     
@@ -88,6 +88,8 @@ def add_word(word):
 #concept definition defines a word through linking it with other concepts through examples
 #sometimes the same word can belong to different grammatical classes while still being roughly the same concept.
 #So we shouldn't require a new concept for each grammatical class
+
+#proposed word structure:[word,[[pos's],[definitions],[concepts]]]
 
 def find_unknown_words(s):
     global vocab
@@ -103,5 +105,11 @@ def find_unknown_words(s):
                     if definition=="undef":
                         definition=False
                     questions_mode=input("Want to go to questioning mode to define the word more?")
+                    add_word(word,[[pos],[definition],[]])
                     #ask for a definition/part of speech
-        
+
+def create_sentence_diagram(sentence):#sentence is in word-for-word format
+    global vocab
+    for word in sentence:
+        if word!="." and word!="," and word!="!" and word!="?" and word!=":" and word!=";":
+            word=[word,vocab[find_word(word)[0]][1]]
