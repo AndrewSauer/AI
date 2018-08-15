@@ -54,7 +54,7 @@ def compare_words(worda,wordb):#returns later word
 
 vocab=[]#arranged as a list of ordered pairs (word,description)
 
-def add_word(word,description):#tested,vocab is alphebetized
+def find_word(word):#untested,vocab is alphebetized
     global vocab
     low=0
     high=len(vocab)
@@ -69,8 +69,32 @@ def add_word(word,description):#tested,vocab is alphebetized
         elif higher==vocab[mid][0]:
             high=mid
         elif higher=="same":
-            return "repeat word!"   
+            return [mid,True]#index word is/should go, whether it's there   
     if low==high:
-        vocab.insert(low,[word,description])
+        return [low,False]
     else:
         print("error: low!=high")
+
+def add_word(word):
+    global vocab
+    i=find_word(word)
+    if i[1]==False:
+        vocab.insert(i[0],word)
+    else:
+        return "repeat word"
+    
+#2 ways to define a word: dictionary and concept
+#dictionary definition defines a word in terms of other words
+#concept definition defines a word through linking it with other concepts through examples
+#sometimes the same word can belong to different grammatical classes while still being roughly the same concept.
+#So we shouldn't require a new concept for each grammatical class
+
+def find_unknown_words(s):
+    global vocab
+    s=split_into_words(s)
+    for sentence in s:
+        for word in sentence:
+            if word!="." and word!="," and word!="!" and word!="?" and word!=":" and word!=";":
+                if find_word[1]==False:
+                    #ask for a definition/part of speech
+        
