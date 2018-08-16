@@ -66,3 +66,9 @@ Matters are complicated by the fact that some words correspond to different conc
 The magic happens in the description section of the word. It must either say definitively what grammatical class the word is or divide the description into multiple descriptions based on which class. 
 8/14/2018 15:29
 
+8/16/2018 15:51
+I now think we shouldn't hardcode in grammar, instead coming up with grammatical concepts and linking them to each other.
+Concepts can be linked to each other with varying strength and direction.
+A concept can be linked to a link as well, describing what kind of link it is(ex. adjective link, physical connection, action)
+Next, we have to figure out how sentences can influence this concept network.
+8/16/2018 15:55
