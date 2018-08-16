@@ -108,8 +108,19 @@ def find_unknown_words(s):
                     add_word(word,[[pos],[definition],[]])
                     #ask for a definition/part of speech
 
-def create_sentence_diagram(sentence):#sentence is in word-for-word format
-    global vocab
-    for word in sentence:
-        if word!="." and word!="," and word!="!" and word!="?" and word!=":" and word!=";":
-            word=[word,vocab[find_word(word)[0]][1]]
+#def create_sentence_diagram(sentence):#sentence is in word-for-word format
+    #global vocab
+    #for word in sentence:
+        #if word!="." and word!="," and word!="!" and word!="?" and word!=":" and word!=";":
+            #word=[word,vocab[find_word(word)[0]][1]]
+
+concept_net=[]#concept format:[words,link,link...] link format:[concept#,strength,link,link...]
+#if a word is connected to a concept it must provide the number
+def add_concept(words):
+    global concept_net
+    concept_net.append([words])
+
+def add_link(concept,target,strength):
+    concept_net[concept].append([target,strength])
+    #.append([concept,-strength])
+def ask_for_links():
